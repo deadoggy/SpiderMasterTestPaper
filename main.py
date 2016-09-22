@@ -37,4 +37,12 @@ def findAllSheet():
     通过findllUrl()找到的链接爬取网页内容
     :return:
     '''
+    UrlLib = findAllUrl()
+    SubjectSet = ['politics', 'math', 'english']
+    for subject in SubjectSet:
+        for item in UrlLib[subject]:
+            response = urllib2.urlopen(item)
+            html = response.read()
+            
+
 
