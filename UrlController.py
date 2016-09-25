@@ -43,11 +43,11 @@ class UrlController:
         # 根据学科找到对应的Pattern
         Pattern = ""
         if Subject == 'politics':
-            Pattern = u'''<td><a href="(.*?)">20..年</a></td>'''
+            Pattern = u'''<td><a href="(.*?).shtml">20..年</a></td>'''
         elif Subject == 'english':
-            Pattern = u'''<p align="center"><a href="(.*?)">英语二</a></p>'''
+            Pattern = u'''<p align="center"><a href="(.*?).shtml">英语二</a></p>'''
         elif Subject == 'math':
-            Pattern = u'''<p align="center"><a href="(.*?)">数三</a></p>'''
+            Pattern = u'''<p align="center"><a href="(.*?).shtml">数三</a></p>'''
 
         ret = re.findall(Pattern, html)
         return ret
@@ -66,6 +66,7 @@ class UrlController:
         for key in subjectroot.keys():
             SheetDic[key] = self.__getAllSheetUrl(subjectroot[key][0], key)
 
+        return SheetDic
 
 
 
