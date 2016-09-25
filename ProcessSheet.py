@@ -1,6 +1,7 @@
 #coding:utf-8
 from UrlController import UrlController as UC
-import docx
+from docx import Document
+from docx.shared import Inches
 import urllib
 import  urllib2
 import re
@@ -20,8 +21,8 @@ class SheetController:
         response = urllib2.urlopen(url + '.shtml')
         html = response.read().decode('gbk')
         pagecount = int(re.findall('''var _PAGE_COUNT="(.*?)"''', html)[0])
-
-        SheetContent = ""
+        title = re.findall(u'''<title>(.*?)-考研-中国教育在线</title>''', html)[0]
+        docx = Document()
 
         for index in range(0, pagecount):
             if 0 == index:
@@ -30,7 +31,7 @@ class SheetController:
                 pageurl = url + '_' + str(index) + '.shtml'
 
 
-    def __processPerSheet(self, url):
+    def __processPerSheet(self, url, docx):
         '''
         处理每一页的内容（政治和英语）
         :param url: 该页的url
@@ -46,7 +47,8 @@ class SheetController:
         contentset = re.findall(pattern_2, editor)
 
         for tag in contentset:
-            if()
+            if tag[0] == 'justify':#如果是正常内容
+
 
 
 
